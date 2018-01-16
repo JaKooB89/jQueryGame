@@ -2,6 +2,7 @@
  * @author Jakub Czaja <jakoob89@gmail.com>
  * Copyright (c) 2018 Jakub Czaja
  **/
+ 
 // Preloads Game Assets
 $.preload([
 'images/bg1.jpg',
