@@ -13,13 +13,13 @@ nav img
   font-family: 'Open Sans', sans-serif
 
 #gameContainer
-  height: 100%
-  width: 100%
   background-image: url(../images/bg1.jpg)
+  background-position: center
   background-repeat: no-repeat
   background-size: cover
-  background-position: center
   font-family: 'Joti One', cursive
+  height: 100%
+  width: 100%
 
 #innerGame
   height: 600px
@@ -32,35 +32,34 @@ nav img
 
 .topMenu
   margin: 3px 0 0 3px
-  z-index: 999
   position: relative
   top: -100px
+  z-index: 999
 
 #birds
-  z-index: 0
-  position: relative
-  filter: brightness(0) blur(1px)
-  width: 150px
-  height: 100px
   animation: birdsFly 12s infinite linear
+  filter: brightness(0) blur(1px)
+  height: 100px
+  position: relative
+  width: 150px
+  z-index: 0
   img
-    width: 100%
     height: 100%
+    width: 100%
 
 .backThumb
-  width: 150px
+  border: 2px solid black
   height: 100px
   margin: 3px
-  border: 2px solid black
+  width: 150px
 
 .fa-caret-square-left, .fa-caret-square-right
   font-size: 2.3em
 
 .screen
+  display: none
   position: relative
   top: -80px
-  display: block
-  display: none
 
 #screen1
   display: block
@@ -69,7 +68,6 @@ nav img
   0%
     left: -150px
     top: -20px
-
   100%
     left: 1200px
     top: 100px
