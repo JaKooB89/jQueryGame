@@ -21,6 +21,7 @@ $(function () {
     'images/bg8.jpg',
     'audio/click.mp3',
     'audio/click2.mp3',
+    'audio/swoosh.mp3',
     'audio/shutter.mp3'
   ])
 
@@ -33,7 +34,7 @@ $(function () {
     $('#btnStart').removeAttr('disabled')
   })
 
-  // Button Sound
+  // Button Sounds
   $('#gameContainer button').click(function () {
     if (sound === true) {
       $.playSound('audio/click.mp3')
@@ -45,15 +46,20 @@ $(function () {
       $.playSound('audio/click2.mp3')
     };
   })
+  $('.btnSlide').click(function () {
+    if (sound === true) {
+      $.playSound('audio/swoosh.mp3')
+    };
+  })
 
   // Mute Function
   $('#btnMute').click(function () {
-    $('#btnMute svg').toggleClass('fa-volume-off')
-    $('#btnMute svg').toggleClass('fa-volume-up')
     if (sound === true) {
       sound = false
+      $('#btnMute svg').addClass('fa-volume-off')
     } else {
       sound = true
+      $('#btnMute svg').addClass('fa-volume-up')
     };
   })
 
