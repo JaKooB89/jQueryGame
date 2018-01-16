@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Client Side Scripting and Designing And Developing an Interactive Media Product HF4X34 HF3D35">
+    <meta name="author" content="Jakub Czaja">
+    <link rel="shortcut icon" href="images/favicon.png">
+    <title>jQuery game</title>
+    <!-- Style Sheets -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="index.html"><i class="fas fa-child"></i> jQuery game</a>
+      </div>
+    </nav>
+    <!-- Page Content -->
+    <div class="container">
+
+      <!-- Game Container -->
+      <div class="mt-4 mb-3 rounded" id="gameContainer">
+        <div id="innerGame">
+
+          <!-- Birds Container -->
+          <div id="birds">
+            <img src="images/birds.gif" alt="birds">
+          </div>
+
+          <!-- Home Button -->
+          <button type="button" class="btn btn-sm btn-outline-light topMenu scrChange" id="btnHome" data-scr-id="1"><i class="fas fa-home"></i></button>
+          <!-- Customize Button -->
+          <button type="button" class="btn btn-sm btn-outline-light topMenu scrChange" id="btnCustom" data-scr-id="6"><i class="fas fa-paint-brush"></i></button>
+          <!-- Mute Button -->
+          <button type="button" class="btn btn-sm btn-outline-light topMenu" id="btnMute"><i class="fas fa-volume-up"></i></button>
+          <!-- InfoPopup Button -->
+          <button type="button" class="btn btn-sm btn-outline-light topMenu" data-toggle="modal" data-target="#infoWindow" id="btnInfo"><i class="fas fa-info"></i></button>
+
+          <!-- Start Game Screen -->
+          <div class="text-center screen" id="screen1">
+            <button type="button" class="btn btn-dark center-block btnTop scrChange" id="btnStart" data-scr-id="2" disabled>Start Game</button>
+            <br>
+            <button type="button" class="btn btn-sm btn-success btnDif" data-dif-id="8">Easy</button>
+            <button type="button" class="btn btn-sm btn-warning btnDif" data-dif-id="10">Medium</button>
+            <button type="button" class="btn btn-sm btn-danger btnDif" data-dif-id="12">Hard</button>
+          </div>
+
+          <!-- Level Choice Screen -->
+          <div class="text-center screen" id="screen2">
+            <button type="button" class="btn btn-dark center-block btnTop" disabled>Choose Level</button>
+            <br>
+            <div id="lvl" class="carousel slide" data-ride="carousel">
+              <!-- Indicators -->
+              <ul class="carousel-indicators">
+                <li data-target="#lvl" data-slide-to="0" class="active"></li>
+                <li data-target="#lvl" data-slide-to="1"></li>
+                <li data-target="#lvl" data-slide-to="2"></li>
+              </ul>
+              <!-- The slideshow -->
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img src="http://via.placeholder.com/300x250" alt="Level 1" class="rounded">
+                  <div class="carousel-caption">
+                    <button type="button" class="btn btn-lg btn-outline-secondary scrChange" id="lvl1" data-scr-id="3">Level 1</button>
+                    <br>
+                    <span class="badge badge-pill badge-secondary">Join colors</span>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <img src="http://via.placeholder.com/300x250" alt="Level 2" class="rounded">
+                  <div class="carousel-caption">
+                    <button type="button" class="btn btn-lg btn-outline-secondary scrChange" id="lvl2" data-scr-id="4">Level 2</button>
+                    <br>
+                    <span class="badge badge-pill badge-secondary">Join pair</span>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <img src="http://via.placeholder.com/300x250" alt="Level 3" class="rounded">
+                  <div class="carousel-caption">
+                    <button type="button" class="btn btn-lg btn-outline-secondary scrChange" id="lvl3" data-scr-id="5">Level 3</button>
+                    <br>
+                    <span class="badge badge-pill badge-secondary">Join shapes</span>
+                  </div>
+                </div>
+              </div>
+              <!-- Left and right controls -->
+              <a class="carousel-control-prev" href="#lvl" data-slide="prev">
+                <i class="far fa-caret-square-left"></i>
+              </a>
+              <a class="carousel-control-next" href="#lvl" data-slide="next">
+                <i class="far fa-caret-square-right"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Level 1 -->
+          <div class="text-center screen" id="screen3">
+            <button type="button" class="btn btn-dark center-block btnTop" disabled>Level One</button>
+            <br>
+            <span class="badge badge-pill badge-secondary">Match fruit with the color</span>
+          </div>
+
+          <!-- Level 2 -->
+          <div class="text-center screen" id="screen4">
+            <button type="button" class="btn btn-dark center-block btnTop" disabled>Level Two</button>
+            <br>
+            <span class="badge badge-pill badge-secondary">Join matching items together</span>
+          </div>
+
+          <!-- Level 3 -->
+          <div class="text-center screen" id="screen5">
+            <button type="button" class="btn btn-dark center-block btnTop" disabled>Level Three</button>
+            <br>
+            <span class="badge badge-pill badge-secondary">Join shape with its shadow</span>
+          </div>
+
+          <!-- Customize Screen -->
+          <div class="text-center screen" id="screen6">
+            <button type="button" class="btn btn-dark center-block btnTop" disabled>Change Background</button>
+            <br>
+              <img class="rounded backThumb" src="images/thumbs/thumb1.jpg" data-bg-id="1">
+              <img class="rounded backThumb" src="images/thumbs/thumb2.jpg" data-bg-id="2">
+              <img class="rounded backThumb" src="images/thumbs/thumb3.jpg" data-bg-id="3">
+              <img class="rounded backThumb" src="images/thumbs/thumb4.jpg" data-bg-id="4">
+              <img class="rounded backThumb" src="images/thumbs/thumb5.jpg" data-bg-id="5">
+              <img class="rounded backThumb" src="images/thumbs/thumb6.jpg" data-bg-id="6">
+              <img class="rounded backThumb" src="images/thumbs/thumb7.jpg" data-bg-id="7">
+              <img class="rounded backThumb" src="images/thumbs/thumb8.jpg" data-bg-id="8">
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Info Section -->
+      <div class="row">
+        <div class="col-lg-4 mb-4">
+          <div class="card h-100">
+            <h4 class="card-header"><i class="fas fa-info-circle"></i> About the game</h4>
+            <div class="card-body">
+              <p class="card-text">An interactive game with an educational twist for children in the age group of 5 - 12.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 mb-4">
+          <div class="card h-100">
+            <h4 class="card-header"><i class="fas fa-gamepad"></i> How to play</h4>
+            <div class="card-body">
+              <p class="card-text">The games must be designed to suit the selected age group in terms of colours, type and language. The games must be able to run as stand-alone applications or presented within a website. The games must be fun and intuitive for the child to use.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 mb-4">
+          <div class="card h-100">
+            <h4 class="card-header"><i class="fas fa-book"></i> Read more</h4>
+            <div class="card-body">
+              <p class="card-text">The child appreciates immediate feedback when completing a task. Additionally, at the end of a level or series of tasks the child appreciates a score and this must be taken into consideration. The game may be very simple and repeated at different levels or you may choose a more complex game. This is your choice; however, the game must demonstrate use of all the evidence requirements listed in Task 2.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; jakoob89@gmail.com 2018</p>
+      </div>
+    </footer>
+
+    <!-- The Modal -->
+    <div class="modal fade" id="infoWindow">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">jQuery game</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <!-- Modal body -->
+          <div class="modal-body">Author: Jakub Czaja</div>
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/jquery/jquery-ui.min.js"></script>
+    <script src="vendor/jquery/jquery.playSound.js"></script>
+    <script src="vendor/jquery/jquery.preload.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.3/js/all.js"></script>
+    <script src="js/game.js"></script>
+  </body>
+</html>
