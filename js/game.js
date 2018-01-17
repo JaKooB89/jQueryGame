@@ -101,14 +101,20 @@ $(function () {
     if (gameDropId === gameDragId) {
       $(".gameItem[data-drop-id='" + gameDropId + "']").remove()
       $(".gameDrop[data-drop-id='" + gameDropId + "']").append(ui.draggable)
-      $.playSound('audio/ding.mp3')
+      if (sound === true) {
+        $.playSound('audio/ding.mp3')
+      }
       pointsTracker += 1
       if (pointsTracker > 11) {
         $('.pyro').css('display', 'block')
-        $.playSound('audio/tada.mp3')
+        if (sound === true) {
+          $.playSound('audio/tada.mp3')
+        }
       }
     } else {
-      $.playSound('audio/error.mp3')
+      if (sound === true) {
+        $.playSound('audio/error.mp3')
+      }
     }
   }
 })
