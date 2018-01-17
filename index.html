@@ -26,9 +26,14 @@
       <div class="mt-4 mb-3 rounded" id="gameContainer">
         <div id="innerGame">
 
-          <!-- Birds Container -->
+          <!-- Birds -->
           <div id="birds">
             <img src="images/birds.gif" alt="birds">
+          </div>
+          <!-- Fireworks -->
+          <div class="pyro">
+            <div class="before"></div>
+            <div class="after"></div>
           </div>
 
           <!-- Home Button -->
@@ -105,18 +110,18 @@
             <br>
             <div class="row">
               <div class="col">
-                <img class="rounded gamePic" src="images/fruits/kiwi.jpg">
-                <img class="rounded gamePic" src="images/fruits/banana.jpg">
+                <img class="rounded gamePic gameItem" src="images/fruits/kiwi.jpg" data-drag-id="2">
+                <img class="rounded gamePic gameItem" src="images/fruits/banana.jpg" data-drag-id="4">
                 <br>
-                <img class="rounded gamePic" src="images/fruits/strawberry.jpg">
-                <img class="rounded gamePic" src="images/fruits/orange.jpg">
+                <img class="rounded gamePic gameItem" src="images/fruits/strawberry.jpg" data-drag-id="1">
+                <img class="rounded gamePic gameItem" src="images/fruits/orange.jpg" data-drag-id="3">
               </div>
               <div class="col">
-                <img class="rounded gamePic" src="images/colors/red.jpg">
-                <img class="rounded gamePic" src="images/colors/green.jpg">
+                <img class="rounded gamePic gameDrop" src="images/colors/red.jpg" data-drop-id="1">
+                <img class="rounded gamePic gameDrop" src="images/colors/green.jpg" data-drop-id="2">
                 <br>
-                <img class="rounded gamePic" src="images/colors/orange.jpg">
-                <img class="rounded gamePic" src="images/colors/yellow.jpg">
+                <img class="rounded gamePic gameDrop" src="images/colors/orange.jpg" data-drop-id="3">
+                <img class="rounded gamePic gameDrop" src="images/colors/yellow.jpg" data-drop-id="4">
               </div>
             </div>
             <!-- Progress Bar -->
@@ -133,18 +138,18 @@
             <br>
             <div class="row">
               <div class="col">
-                <img class="rounded gamePic" src="images/animals/dog.jpg">
-                <img class="rounded gamePic" src="images/animals/fox.jpg">
+                <img class="rounded gamePic gameItem" src="images/animals/dog.jpg" data-drag-id="3">
+                <img class="rounded gamePic gameItem" src="images/animals/fox.jpg" data-drag-id="1">
                 <br>
-                <img class="rounded gamePic" src="images/animals/frog.jpg">
-                <img class="rounded gamePic" src="images/animals/bird.jpg">
+                <img class="rounded gamePic gameItem" src="images/animals/frog.jpg" data-drag-id="4">
+                <img class="rounded gamePic gameItem" src="images/animals/bird.jpg" data-drag-id="2">
               </div>
               <div class="col">
-                <img class="rounded gamePic" src="images/homes/den.jpg">
-                <img class="rounded gamePic" src="images/homes/nest.jpg">
+                <img class="rounded gamePic gameDrop" src="images/homes/den.jpg" data-drop-id="1">
+                <img class="rounded gamePic gameDrop" src="images/homes/nest.jpg" data-drop-id="2">
                 <br>
-                <img class="rounded gamePic" src="images/homes/doghouse.jpg">
-                <img class="rounded gamePic" src="images/homes/pond.jpg">
+                <img class="rounded gamePic gameDrop" src="images/homes/doghouse.jpg" data-drop-id="3">
+                <img class="rounded gamePic gameDrop" src="images/homes/pond.jpg" data-drop-id="4">
               </div>
             </div>
             <!-- Progress Bar -->
@@ -159,25 +164,20 @@
             <br>
             <span class="badge badge-pill badge-secondary">Join item with its shape</span>
             <br>
-            <!-- Fireworks -->
-            <div class="pyro">
-              <div class="before"></div>
-              <div class="after"></div>
-            </div>
             <div class="row">
               <div class="col">
-                <img class="rounded gamePic" src="images/items/tree.jpg">
-                <img class="rounded gamePic" src="images/items/clock.jpg">
+                <img class="rounded gamePic gameItem" src="images/items/tree.jpg" data-drag-id="4">
+                <img class="rounded gamePic gameItem" src="images/items/clock.jpg" data-drag-id="1">
                 <br>
-                <img class="rounded gamePic" src="images/items/tv.jpg">
-                <img class="rounded gamePic" src="images/items/tray.jpg">
+                <img class="rounded gamePic gameItem" src="images/items/tv.jpg" data-drag-id="3">
+                <img class="rounded gamePic gameItem" src="images/items/tray.jpg" data-drag-id="2">
               </div>
               <div class="col">
-                <img class="rounded gamePic" src="images/shapes/circle.jpg">
-                <img class="rounded gamePic" src="images/shapes/square.jpg">
+                <img class="rounded gamePic gameDrop" src="images/shapes/circle.jpg" data-drop-id="1">
+                <img class="rounded gamePic gameDrop" src="images/shapes/square.jpg" data-drop-id="2">
                 <br>
-                <img class="rounded gamePic" src="images/shapes/rectangle.jpg">
-                <img class="rounded gamePic" src="images/shapes/triangle.jpg">
+                <img class="rounded gamePic gameDrop" src="images/shapes/rectangle.jpg" data-drop-id="3">
+                <img class="rounded gamePic gameDrop" src="images/shapes/triangle.jpg" data-drop-id="4">
               </div>
             </div>
             <!-- Progress Bar -->
@@ -185,7 +185,6 @@
               <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" style="width:20%"></div>
             </div>
           </div>
-
 
           <!-- Customize Screen -->
           <div class="text-center screen" id="screen6">

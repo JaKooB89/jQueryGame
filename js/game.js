@@ -11,18 +11,14 @@ var sound = true
 $(function () {
   // Preloads Game Assets
   $.preload([
-    'images/bg1.jpg',
-    'images/bg2.jpg',
-    'images/bg3.jpg',
-    'images/bg4.jpg',
-    'images/bg5.jpg',
-    'images/bg6.jpg',
-    'images/bg7.jpg',
-    'images/bg8.jpg',
-    'audio/click.mp3',
-    'audio/click2.mp3',
-    'audio/swoosh.mp3',
-    'audio/shutter.mp3'
+    'images/bg1.jpg', 'images/bg2.jpg',
+    'images/bg3.jpg', 'images/bg4.jpg',
+    'images/bg5.jpg', 'images/bg6.jpg',
+    'images/bg7.jpg', 'images/bg8.jpg',
+    'audio/ding.mp3', 'audio/click.mp3',
+    'audio/click2.mp3', 'audio/swoosh.mp3',
+    'audio/trombone.mp3', 'audio/tada.mp3',
+    'audio/error.mp3', 'audio/shutter.mp3'
   ])
 
   // Difficulty Level Choice
@@ -38,18 +34,18 @@ $(function () {
   $('#gameContainer button').click(function () {
     if (sound === true) {
       $.playSound('audio/click.mp3')
-    };
+    }
   })
   $('.btnDif').click(function () {
     if (sound === true) {
       $.stopSound()
       $.playSound('audio/click2.mp3')
-    };
+    }
   })
   $('.btnSlide').click(function () {
     if (sound === true) {
       $.playSound('audio/swoosh.mp3')
-    };
+    }
   })
 
   // Mute Function
@@ -79,6 +75,40 @@ $(function () {
     $('#gameContainer').css('background-image', 'url(images/bg' + bgId + '.jpg)')
     if (sound === true) {
       $.playSound('audio/shutter.mp3')
-    };
+    }
   })
+
+  // Making pictures draggable
+  $('.gameItem').draggable({
+    cursor: 'move',
+    helper: 'clone',
+    revert: 'invalid',
+    hoverClass: 'hovered',
+    revertDuration: 300
+  })
+
+  // Making pictures droppable
+  $('.gameDrop').droppable({
+    accept: '.gameItem',
+    tolerance: 'intersect',
+    drop: handleDrop
+  })
+
+  // Function handling drop
+  function handleDrop (event, ui) {
+    var gameDropId = $(this).attr('data-drop-id')
+    var gameDragId = ui.draggable.attr('data-drag-id')
+    if (gameDropId === gameDragId) {
+      $(".gameItem[data-drop-id='" + gameDropId + "']").remove()
+      $(".gameDrop[data-drop-id='" + gameDropId + "']").append(ui.draggable)
+      $.playSound('audio/ding.mp3')
+      pointsTracker += 1
+      if (pointsTracker > 11) {
+        $('.pyro').css('display', 'block')
+        $.playSound('audio/tada.mp3')
+      }
+    } else {
+      $.playSound('audio/error.mp3')
+    }
+  }
 })
