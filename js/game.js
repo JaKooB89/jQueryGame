@@ -3,10 +3,13 @@
  * Copyright (c) 2018 Jakub Czaja
  **/
 
-// Initial Variables
+// Declaring Global Variables
 var pointsTracker = 0
+var levelTracker = 0
 var count = 10
 var sound = true
+var scrId
+var btnId
 
 $(function () {
   // Preloads Game Assets
@@ -23,37 +26,40 @@ $(function () {
 
   // Difficulty Level Choice
   $('.btnDif').click(function () {
-    var btnId = $(this).attr('data-dif-id')
+    btnId = $(this).attr('data-dif-id')
     count = btnId
     $('.btnDif').addClass('disabled')
     $(this).removeClass('disabled')
     $('#btnStart').removeAttr('disabled')
+    $('#btnTime span').html(count)
   })
 
   // Button Sounds
   $('#gameContainer button').click(function () {
-    if (sound === true) {
+    if (sound) {
       $.playSound('audio/click.mp3')
     }
   })
   $('.btnDif').click(function () {
-    if (sound === true) {
+    if (sound) {
       $.stopSound()
       $.playSound('audio/click2.mp3')
     }
   })
   $('.btnSlide').click(function () {
-    if (sound === true) {
+    if (sound) {
       $.playSound('audio/swoosh.mp3')
     }
   })
 
   // Mute Function
   $('#btnMute').click(function () {
-    if (sound === true) {
+    if (sound) {
+      $.stopSound()
       sound = false
       $('#btnMute svg').addClass('fa-volume-off')
     } else {
+      $.playSound('audio/click.mp3')
       sound = true
       $('#btnMute svg').addClass('fa-volume-up')
     };
@@ -61,7 +67,7 @@ $(function () {
 
   // Screen Changer
   $('.scrChange').on('click', function () {
-    var scrId = $(this).attr('data-scr-id')
+    scrId = $(this).attr('data-scr-id')
     $('.screen').fadeOut(300, function () {
       setTimeout(function () {
         $('#screen' + scrId).fadeIn()
@@ -73,7 +79,7 @@ $(function () {
   $('.backThumb').on('click', function () {
     var bgId = $(this).attr('data-bg-id')
     $('#gameContainer').css('background-image', 'url(images/bg' + bgId + '.jpg)')
-    if (sound === true) {
+    if (sound) {
       $.playSound('audio/shutter.mp3')
     }
   })
@@ -87,34 +93,82 @@ $(function () {
     revertDuration: 300
   })
 
-  // Making pictures droppable
+  // Making dropzones
   $('.gameDrop').droppable({
     accept: '.gameItem',
     tolerance: 'intersect',
     drop: handleDrop
   })
 
-  // Function handling drop
+  // Start Game
+  $('#btnStart').click(function () {
+    $('.btnDif').attr('disabled', true)
+    $('.btnDif').hide()
+  })
+
+  // Win function (all levels completed)
+  function win () {
+    if (levelTracker === 3) {
+      $('.pyro').css('display', 'block')
+      if (sound) {
+        $.playSound('audio/tada.mp3')
+      }
+      $('.screen').fadeOut(300, function () {
+        // setTimeout(function () {
+        //   $('#winScreen').fadeIn()
+        // }, 301)
+      })
+    }
+  }
+
+  // Level completed
+  function lvlup () {
+    if (pointsTracker === 4) {
+      pointsTracker = 0
+      levelTracker += 1
+      gemUp()
+      setTimeout(gemUp, 500)
+      $('#btnPoints span').html(pointsTracker)
+      $('#btnLevel span').html(levelTracker)
+      $('.screen').fadeOut(300, function () {
+        setTimeout(function () {
+          $('#screen2').fadeIn()
+        }, 301)
+      })
+      win()
+    }
+  }
+
+  // Addpoint animation
+  function addPoint () {
+    $('#btnPoints').toggleClass('btn-outline-light')
+    $('#btnPoints').toggleClass('btn-light')
+  }
+  // Lvlup animation
+  function gemUp () {
+    $('#btnLevel').toggleClass('btn-outline-light')
+    $('#btnLevel').toggleClass('btn-light')
+  }
+
+  // Handling drop
   function handleDrop (event, ui) {
     var gameDropId = $(this).attr('data-drop-id')
     var gameDragId = ui.draggable.attr('data-drag-id')
     if (gameDropId === gameDragId) {
       $(".gameItem[data-drop-id='" + gameDropId + "']").remove()
       $(".gameDrop[data-drop-id='" + gameDropId + "']").append(ui.draggable)
-      if (sound === true) {
+      pointsTracker += 1
+      $('#btnPoints span').html(pointsTracker)
+      addPoint()
+      setTimeout(addPoint, 500)
+      if (sound) {
         $.playSound('audio/ding.mp3')
       }
-      pointsTracker += 1
-      if (pointsTracker > 11) {
-        $('.pyro').css('display', 'block')
-        if (sound === true) {
-          $.playSound('audio/tada.mp3')
-        }
-      }
     } else {
-      if (sound === true) {
+      if (sound) {
         $.playSound('audio/error.mp3')
       }
     }
+    lvlup()
   }
 })
