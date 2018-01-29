@@ -106,7 +106,9 @@ $(function () {
           $('#screen8').fadeIn()
         }, 301)
       })
-      $.playSound('audio/trombone.mp3')
+      if (sound) {
+        $.playSound('audio/trombone.mp3')
+      }
       levelRes()
       timerRes()
     } else if (count <= 3) {
@@ -210,8 +212,10 @@ $(function () {
   // Level completed
   function lvlup () {
     if (pointsTracker === 4) {
-      $.stopSound()
-      $.playSound('audio/magicwand.mp3')
+      if (sound) {
+        $.stopSound()
+        $.playSound('audio/magicwand.mp3')
+      }
       pointsTracker = 0
       levelTracker += 1
       gemUp()
