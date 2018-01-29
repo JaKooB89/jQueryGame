@@ -12,15 +12,15 @@
     <link href="css/main.min.css" rel="stylesheet">
     <link href="css/fireworks.min.css" rel="stylesheet">
   </head>
-  <body>
+  <body class="bodyPad">
     <!-- Navigation -->
-    <nav class="navbar navbar-dark bg-dark fixed-top">
+    <nav class="navbar navbar-dark bg-dark">
       <div class="container">
         <a class="navbar-brand" href="index.html"><i class="fas fa-child"></i> jQuery game</a>
       </div>
     </nav>
     <!-- Page Content -->
-    <div class="container">
+    <div class="container" id="container">
 
       <!-- Game Container -->
       <div class="mt-4 mb-3 rounded" id="gameContainer">
@@ -42,14 +42,18 @@
           <button type="button" class="btn btn-sm btn-outline-light topMenu scrChange" id="btnCustom" data-scr-id="6"><i class="fas fa-paint-brush"></i></button>
           <!-- Mute Button -->
           <button type="button" class="btn btn-sm btn-outline-light topMenu" id="btnMute"><i class="fas fa-volume-up"></i></button>
+          <!-- Fullscreen Button -->
+          <button type="button" class="btn btn-sm btn-outline-light topMenu" id="btnFull"><i class="fas fa-expand"></i></button>
           <!-- InfoPopup Button -->
           <button type="button" class="btn btn-sm btn-outline-light topMenu" data-toggle="modal" data-target="#infoWindow" id="btnInfo"><i class="fas fa-info"></i></button>
+          <!-- Restart Button -->
+          <button type="button" class="btn btn-sm btn-outline-light topMenu btnLeft restart"><i class="fas fa-redo"></i></button>
           <!-- Level Tracker -->
-          <button type="button" class="btn btn-sm btn-outline-light topMenu" disabled id="btnLevel"><i class="far fa-gem"></i>&nbsp;<span>0</span></button>
+          <button type="button" class="btn btn-sm btn-outline-light topMenu btnLeft" disabled id="btnLevel"><i class="far fa-gem"></i>&nbsp;<span>0</span></button>
           <!-- Points Tracker -->
-          <button type="button" class="btn btn-sm btn-outline-light topMenu" disabled id="btnPoints"><i class="far fa-star"></i>&nbsp;<span>0</span></button>
+          <button type="button" class="btn btn-sm btn-outline-light topMenu btnLeft" disabled id="btnPoints"><i class="far fa-star"></i>&nbsp;<span>0</span></button>
           <!-- Time Counter -->
-          <button type="button" class="btn btn-sm btn-outline-light topMenu" disabled id="btnTime"><i class="far fa-clock"></i>&nbsp;<span>10</span></button>
+          <button type="button" class="btn btn-sm btn-outline-light topMenu btnLeft" disabled id="btnTime"><i class="fas fa-stopwatch"></i>&nbsp;<span>10</span></button>
 
           <!-- Start Game Screen -->
           <div class="text-center screen" id="screen1">
@@ -58,6 +62,22 @@
             <button type="button" class="btn btn-sm btn-success btnDif" data-dif-id="12">Easy</button>
             <button type="button" class="btn btn-sm btn-warning btnDif" data-dif-id="10">Medium</button>
             <button type="button" class="btn btn-sm btn-danger btnDif" data-dif-id="8">Hard</button>
+          </div>
+
+          <!-- Game Won Screen -->
+          <div class="text-center screen" id="screen7">
+            <button type="button" class="btn btn-primary center-block btnTop"disabled>CONGRATULATIOS</button>
+            <br>
+            <button type="button" class="btn btn-primary center-block btnTop"disabled><i class="fas fa-trophy"></i>&nbsp;YOU WON&nbsp;<i class="fas fa-trophy"></i></button>
+            <br>
+            <button type="button" class="btn btn-sm btn-primary restart"><i class="fas fa-redo"></i>&nbsp;Play Again</button>
+          </div>
+
+          <!-- TimeUp Screen -->
+          <div class="text-center screen" id="screen8">
+            <button type="button" class="btn btn-primary center-block btnTop"disabled><i class="far fa-clock"></i>&nbsp;TIME UP</button>
+            <br>
+            <button type="button" class="btn btn-sm btn-primary" id="timeUp"><i class="fas fa-undo"></i>&nbsp;Try Again</button>
           </div>
 
           <!-- Level Choice Screen -->
@@ -70,13 +90,14 @@
                 <li data-target="#lvl" data-slide-to="0" class="active btnSlide">1</li>
                 <li data-target="#lvl" data-slide-to="1" class="btnSlide">2</li>
                 <li data-target="#lvl" data-slide-to="2" class="btnSlide">3</li>
+                <li data-target="#lvl" data-slide-to="3" class="btnSlide">4</li>
               </ul>
               <!-- The slideshow -->
               <div class="carousel-inner">
                 <div class="carousel-item active">
                   <img src="images/level1.jpg" alt="Level 1" class="rounded-circle">
                   <div class="carousel-caption">
-                    <button type="button" class="btn btn-lg btn-secondary scrChange" id="lvl1" data-scr-id="3">PLAY</button>
+                    <button type="button" class="btn btn-lg btn-secondary scrChange" id="lvl1" data-scr-id="10">PLAY</button>
                     <br>
                     <span class="badge badge-pill badge-secondary">Level 1 - Join colors</span>
                   </div>
@@ -84,7 +105,7 @@
                 <div class="carousel-item">
                   <img src="images/level2.jpg" alt="Level 2" class="rounded-circle">
                   <div class="carousel-caption">
-                    <button type="button" class="btn btn-lg btn-secondary scrChange" id="lvl2" data-scr-id="4">PLAY</button>
+                    <button type="button" class="btn btn-lg btn-secondary scrChange" id="lvl2" data-scr-id="11" disabled>Level Locked<br /><i class="fas fa-lock"></i></button>
                     <br>
                     <span class="badge badge-pill badge-secondary">Level 2 - Join animals</span>
                   </div>
@@ -92,9 +113,17 @@
                 <div class="carousel-item">
                   <img src="images/level3.jpg" alt="Level 3" class="rounded-circle">
                   <div class="carousel-caption">
-                    <button type="button" class="btn btn-lg btn-secondary scrChange" id="lvl3" data-scr-id="5">PLAY</button>
+                    <button type="button" class="btn btn-lg btn-secondary scrChange" id="lvl3" data-scr-id="12" disabled>Level Locked<br /><i class="fas fa-lock"></i></button>
                     <br>
                     <span class="badge badge-pill badge-secondary">Level 3 - Join shapes</span>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <img src="images/level4.jpg" alt="Level 4" class="rounded-circle">
+                  <div class="carousel-caption">
+                    <button type="button" class="btn btn-lg btn-secondary scrChange" id="lvl4" data-scr-id="13" disabled>Level Locked<br /><i class="fas fa-lock"></i></button>
+                    <br>
+                    <span class="badge badge-pill badge-secondary">Level 4 - Match Jobs</span>
                   </div>
                 </div>
               </div>
@@ -109,7 +138,7 @@
           </div>
 
           <!-- Level 1 -->
-          <div class="text-center screen" id="screen3">
+          <div class="text-center screen" id="screen10">
             <button type="button" class="btn btn-dark center-block btnTop" disabled>Level One</button>
             <br>
             <span class="badge badge-pill badge-secondary">Match fruit with the color</span>
@@ -130,14 +159,10 @@
                 <img class="rounded gamePic gameDrop" src="images/colors/yellow.jpg" data-drop-id="4">
               </div>
             </div>
-            <!-- Progress Bar -->
-            <div class="progress">
-              <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" style="width:90%"></div>
-            </div>
           </div>
 
           <!-- Level 2 -->
-          <div class="text-center screen" id="screen4">
+          <div class="text-center screen" id="screen11">
             <button type="button" class="btn btn-dark center-block btnTop" disabled>Level Two</button>
             <br>
             <span class="badge badge-pill badge-secondary">Join animal with its home</span>
@@ -158,14 +183,10 @@
                 <img class="rounded gamePic gameDrop" src="images/homes/pond.jpg" data-drop-id="4">
               </div>
             </div>
-            <!-- Progress Bar -->
-            <div class="progress">
-              <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" style="width:50%"></div>
-            </div>
           </div>
 
           <!-- Level 3 -->
-          <div class="text-center screen" id="screen5">
+          <div class="text-center screen" id="screen12">
             <button type="button" class="btn btn-dark center-block btnTop" disabled>Level Three</button>
             <br>
             <span class="badge badge-pill badge-secondary">Join item with its shape</span>
@@ -186,9 +207,29 @@
                 <img class="rounded gamePic gameDrop" src="images/shapes/triangle.jpg" data-drop-id="4">
               </div>
             </div>
-            <!-- Progress Bar -->
-            <div class="progress">
-              <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" style="width:20%"></div>
+          </div>
+
+          <!-- Level 4 -->
+          <div class="text-center screen" id="screen13">
+            <button type="button" class="btn btn-dark center-block btnTop" disabled>Level Four</button>
+            <br>
+            <span class="badge badge-pill badge-secondary">Join person with his/hers workplace</span>
+            <br>
+            <div class="row">
+              <div class="col">
+                <img class="rounded gamePic gameItem" src="images/occupation/baker.jpg" data-drag-id="4">
+                <img class="rounded gamePic gameItem" src="images/occupation/nurse.jpg" data-drag-id="1">
+                <br>
+                <img class="rounded gamePic gameItem" src="images/occupation/fireman.jpg" data-drag-id="3">
+                <img class="rounded gamePic gameItem" src="images/occupation/teacher.jpg" data-drag-id="2">
+              </div>
+              <div class="col">
+                <img class="rounded gamePic gameDrop" src="images/workplace/hospital.jpg" data-drop-id="1">
+                <img class="rounded gamePic gameDrop" src="images/workplace/school.jpg" data-drop-id="2">
+                <br>
+                <img class="rounded gamePic gameDrop" src="images/workplace/firetruck.jpg" data-drop-id="3">
+                <img class="rounded gamePic gameDrop" src="images/workplace/bakery.jpg" data-drop-id="4">
+              </div>
             </div>
           </div>
 
@@ -210,7 +251,7 @@
       </div>
 
       <!-- Info Section -->
-      <div class="row">
+      <div class="row" id="infoSection">
         <div class="col-lg-4 mb-4">
           <div class="card h-100">
             <h4 class="card-header"><i class="fas fa-info-circle"></i> About the game</h4>

@@ -2,9 +2,6 @@
 @import url('https://fonts.googleapis.com/css?family=Joti+One')
 @import url('https://fonts.googleapis.com/css?family=Open+Sans')
 
-body
-  padding-top: 54px
-
 nav img
   height: 70px
   width: auto
@@ -25,6 +22,9 @@ nav img
   height: 650px
   overflow: hidden
 
+.innerGameHight
+  height: 100vh !important
+
 .badge-pill
   font-size: 85%
   font-weight: 450
@@ -37,26 +37,20 @@ nav img
   margin-top: 5px
 
 .topMenu
-  margin: 4px 0 4px 4px
+  margin: 3px 0 3px 3px
+  padding: 3px 2px
   position: relative
   top: -100px
   z-index: 90
-  width: 32px
-  &:disabled
+  width: 30px
+  &.btnLeft
     opacity: 1
     float: right
-    width: 50px
-    margin: 4px 4px 4px 0
+    width: 45px
+    margin: 3px 3px 3px 0
 
 #btnTime
-  display: none
-
-.progress
-  position: absolute
-  top: 580px
-  left: 2.5%
-  width: 95%
-  height: 0.5rem
+    display: none
 
 .carousel-item img
   opacity: 0.8
@@ -115,14 +109,13 @@ nav img
 #screen1
   display: block
 
+.hideItem
+  opacity: 0
+
 @keyframes birdsFly
   0%
     left: -150px
     top: -20px
   100%
-    left: 1200px
+    left: 1800px
     top: 100px
-
-@media (min-width: 992px)
-  body
-    padding-top: 56px
