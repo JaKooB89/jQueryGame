@@ -77,6 +77,15 @@ $(function () {
     $('#btnFull svg').toggleClass('fa-expand')
   })
 
+  // Background Changer
+  $('.backThumb').on('click', function () {
+    var bgId = $(this).attr('data-bg-id')
+    $('#gameContainer').css('background-image', 'url(images/bg' + bgId + '.jpg)')
+    if (sound) {
+      $.playSound('audio/shutter.mp3')
+    }
+  })
+
   // Screen Changer
   $('.scrChange').on('click', function () {
     scrId = $(this).attr('data-scr-id')
@@ -147,15 +156,6 @@ $(function () {
     }
   }
 
-  // Background Changer
-  $('.backThumb').on('click', function () {
-    var bgId = $(this).attr('data-bg-id')
-    $('#gameContainer').css('background-image', 'url(images/bg' + bgId + '.jpg)')
-    if (sound) {
-      $.playSound('audio/shutter.mp3')
-    }
-  })
-
   // Setting draggables
   $('.gameItem').draggable({
     cursor: 'move',
@@ -206,6 +206,8 @@ $(function () {
   // Restart Game
   $('.restart').on('click', function () {
     $('#btnStart').attr('disabled', true)
+    $('.carousel-caption button').attr('disabled', true)
+    $('#lvl1').attr('disabled', false)
     window.location.reload()
   })
 
