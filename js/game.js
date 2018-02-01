@@ -73,8 +73,7 @@ $(function () {
     $('#container').toggleClass('container')
     $('#gameContainer').toggleClass('mt-4 mb-3 rounded')
     $('#innerGame').toggleClass('innerGameHight')
-    $('#btnFull svg').toggleClass('fa-compress')
-    $('#btnFull svg').toggleClass('fa-expand')
+    $('#btnFull svg').toggleClass('fa-expand fa-compress')
   })
 
   // Background Changer
@@ -90,6 +89,7 @@ $(function () {
   $('.scrChange').on('click', function () {
     scrId = $(this).attr('data-scr-id')
     timerRes()
+    levelRes()
     $('.screen').fadeOut(300, function () {
       setTimeout(function () {
         $('#screen' + scrId).fadeIn()
@@ -113,6 +113,7 @@ $(function () {
       $('.screen').fadeOut(300, function () {
         setTimeout(function () {
           $('#screen8').fadeIn()
+          levelRes()
         }, 301)
       })
       if (sound) {
@@ -180,7 +181,8 @@ $(function () {
 
   // Win function (all levels completed)
   function win () {
-    if (levelTracker === 4) {
+    var highestLvl = Number($('.carousel-indicators-numbers li:last-of-type').html())
+    if (levelTracker === highestLvl) {
       $('.pyro').css('display', 'block')
       if (sound) {
         $.stopSound()
