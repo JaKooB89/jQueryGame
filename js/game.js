@@ -30,6 +30,11 @@ $(function () {
     'audio/magicwand.mp3'
   ])
 
+  // Disable Selection and Right Click
+  $('#innerGame').disableSelection().on('contextmenu', function () {
+    return false
+  })
+
   // Difficulty Level Choice
   $('.btnDif').on('click', function () {
     btnId = $(this).attr('data-dif-id')
