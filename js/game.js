@@ -90,12 +90,12 @@ $(function () {
     scrId = $(this).attr('data-scr-id')
     timerRes()
     levelRes()
-    $('.screen').fadeOut(300, function () {
+    $('.screen').fadeOut(100, function () {
       setTimeout(function () {
         $('#screen' + scrId).fadeIn()
-      }, 301)
+      }, 101)
     })
-    // Set and Show timers
+    // Set and Show Timers
     if (scrId >= 10) {
       counter = setInterval(timer, 1000)
       $('#btnTime').show()
@@ -110,11 +110,10 @@ $(function () {
     count--
     $('#btnTime span').html(count)
     if (count === 0) {
-      $('.screen').fadeOut(300, function () {
+      $('.screen').fadeOut(100, function () {
         setTimeout(function () {
           $('#screen8').fadeIn()
-          levelRes()
-        }, 301)
+        }, 101)
       })
       if (sound) {
         $.playSound('audio/trombone.mp3')
@@ -163,7 +162,7 @@ $(function () {
     helper: 'clone',
     revert: 'invalid',
     hoverClass: 'hovered',
-    revertDuration: 300
+    revertDuration: 200
   })
 
   // Setting dropzones
@@ -188,10 +187,10 @@ $(function () {
         $.stopSound()
         $.playSound('audio/tada.mp3')
       }
-      $('.screen').fadeOut(300, function () {
+      $('.screen').fadeOut(100, function () {
         setTimeout(function () {
           $('#screen7').fadeIn()
-        }, 301)
+        }, 101)
       })
     }
   }
@@ -227,10 +226,10 @@ $(function () {
       $('#btnPoints span').html(pointsTracker)
       $('#btnLevel span').html(levelTracker)
       if (levelTracker !== 4) {
-        $('.screen').fadeOut(300, function () {
+        $('.screen').fadeOut(100, function () {
           setTimeout(function () {
             $('#screen2').fadeIn()
-          }, 301)
+          }, 101)
         })
       }
       timerRes()
