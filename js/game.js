@@ -13,7 +13,11 @@ var scrId
 var btnId
 
 $(function () {
-  // Preloads Game Assets
+  // Game Loader
+  $('#loader').delay(3000).fadeOut(100, function () {
+    $('#innerGame, #screen1').fadeIn()
+  })
+  // Preload Game Assets
   $.preload([
     'images/bg1.jpg', 'images/bg2.jpg',
     'images/bg3.jpg', 'images/bg4.jpg',

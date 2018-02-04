@@ -1,0 +1,74 @@
+#loader
+  background-color: rgba(0, 0, 0, 0.6)
+  color: #fff
+  height: 650px
+  overflow: hidden
+  padding-top: 180px
+
+#loader h4
+  margin: 15px
+
+.loader, .dot-loader
+  margin: 0 auto
+  width: 100px
+  height: 100px
+
+.loader
+  transform-origin: center
+  animation: anirotate 5s linear infinite
+
+.dot-loader
+  position: absolute
+  border-radius: 50px
+  &:nth-child(2)
+    transform: rotate(40deg)
+    .dot
+      animation-delay: -0.5s
+  &:nth-child(3)
+    transform: rotate(80deg)
+    .dot
+      animation-delay: -1s
+
+.dot
+  background: #fff
+  border-radius: 5px
+  height: 10px
+  position: absolute
+  transform: translate(0, 0)
+  width: 10px
+  &:nth-child(1)
+    top: 0
+    left: calc(50% - 5px)
+    animation: ani1 1s infinite
+  &:nth-child(2)
+    bottom: calc(28% - 5px)
+    left: calc(11% - 5px)
+    animation: ani2 1s infinite
+  &:nth-child(3)
+    bottom: calc(28% - 5px)
+    right: calc(11% - 5px)
+    animation: ani3 1s infinite
+
+@keyframes anirotate
+  0%
+    transform: rotate(0deg)
+  100%
+    transform: rotate(-359deg)
+
+@keyframes ani1
+  0%
+    transform: translate(0, 0)
+  100%
+    transform: translate(-40px, 67px)
+
+@keyframes ani2
+  0%
+    transform: translate(0, 0)
+  100%
+    transform: translate(77px, 0)
+
+@keyframes ani3
+  0%
+    transform: translate(0, 0)
+  100%
+    transform: translate(-39px, -67px)
