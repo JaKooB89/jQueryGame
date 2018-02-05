@@ -19,15 +19,15 @@ $(function () {
   })
   // Preload Game Assets
   $.preload([
-    'images/bg1.jpg', 'images/bg2.jpg',
-    'images/bg3.jpg', 'images/bg4.jpg',
-    'images/bg5.jpg', 'images/bg6.jpg',
-    'images/bg7.jpg', 'images/bg8.jpg',
+    'images/backgrounds/bg1.jpg', 'images/backgrounds/bg2.jpg',
+    'images/backgrounds/bg3.jpg', 'images/backgrounds/bg4.jpg',
+    'images/backgrounds/bg5.jpg', 'images/backgrounds/bg6.jpg',
+    'images/backgrounds/bg7.jpg', 'images/backgrounds/bg8.jpg',
     'audio/ding.mp3', 'audio/click.mp3',
+    'audio/trombone.mp3', 'audio/tada.mp3',
     'audio/error.mp3', 'audio/shutter.mp3',
     'audio/click2.mp3', 'audio/swoosh.mp3',
-    'audio/trombone.mp3', 'audio/tada.mp3',
-    'audio/magicwand.mp3'
+    'audio/magicwand.mp3', 'audio/tictoc.mp3'
   ])
 
   // Disable Selection and Right Click
@@ -130,6 +130,7 @@ $(function () {
       levelRes()
       timerRes()
     } else if (count <= 3) {
+      $.playSound('audio/tictoc.mp3')
       $('#btnTime').removeClass('btn-outline-warning')
       $('#btnTime').addClass('btn-outline-danger')
     } else if (count <= 6) {
