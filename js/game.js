@@ -88,7 +88,7 @@ $(function () {
   // Background Changer
   $('.backThumb').on('click', function () {
     var bgId = $(this).attr('data-bg-id')
-    $('#gameContainer').css('background-image', 'url(images/bg' + bgId + '.jpg)')
+    $('#gameContainer').css('background-image', 'url(images/backgrounds/bg' + bgId + '.jpg)')
     if (sound) {
       $.playSound('audio/shutter.mp3')
     }
