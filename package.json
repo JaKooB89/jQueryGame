@@ -1,0 +1,26 @@
+{
+  "name": "jquerygame",
+  "version": "1.0.0",
+  "description": "jQuery Game",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JaKooB89/jQuery-game.git"
+  },
+  "author": "jakoob89@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JaKooB89/jQuery-game/issues"
+  },
+  "homepage": "https://github.com/JaKooB89/jQuery-game#readme",
+  "devDependencies": {
+    "autoprefixer": "^7.2.5",
+    "csswring": "^6.0.2",
+    "gulp": "^3.9.1",
+    "gulp-imagemin": "^4.1.0",
+    "gulp-postcss": "^7.0.1"
+  }
+}
