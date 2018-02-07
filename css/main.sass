@@ -1,11 +1,12 @@
 //output:main.css
 @import url('https://fonts.googleapis.com/css?family=Joti+One')
 @import url('https://fonts.googleapis.com/css?family=Open+Sans')
-@import "loader"
+@import 'loader'
 
-nav img
-  height: 70px
-  width: auto
+nav
+  img
+    height: 70px
+    width: auto
 
 .modal
   font-family: 'Open Sans', sans-serif
@@ -24,10 +25,12 @@ nav img
   display: none
   height: 650px
   overflow: hidden
-  a, button:hover
-    cursor: url('../cursors/pointer.cur'), pointer
-  button:disabled
-    cursor: url('../cursors/left_ptr.cur'), auto
+  a, button
+    &:hover
+      cursor: url('../cursors/pointer.cur'), pointer
+  button
+    &:disabled
+      cursor: url('../cursors/left_ptr.cur'), auto
 
 .innerGameHight
   height: 100vh !important
@@ -57,27 +60,28 @@ nav img
     width: 45px
 
 #btnTime
-    display: none
+  display: none
 
-.carousel-item img
-  height: 250px
-  opacity: 0.9
-  width: 300px
+.carousel-item
+  img
+    height: 250px
+    opacity: .9
+    width: 300px
 
 .carousel-indicators-numbers
   bottom: 0
   top: 260px
   li
     background-color: #999
+    border: 0
     border-radius: 50%
-    border: none
     color: #fff
     cursor: url('../cursors/pointer.cur'), pointer
     height: 30px
     line-height: 30px
     margin: 0 2px
     text-indent: 0
-    transition: all 0.25s ease
+    transition: all .25s ease
     width: 30px
     &.active, &:hover
       background-color: #337ab7
@@ -117,7 +121,7 @@ nav img
   top: -80px
 
 .hideItem
-  opacity: 0
+  visibility: hidden
 
 @keyframes birdsFly
   0%
@@ -126,4 +130,4 @@ nav img
   100%
     left: 1800px
     top: 100px
-    transform: scale(0.8)
+    transform: scale(.8)

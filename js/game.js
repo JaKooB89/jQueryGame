@@ -1,6 +1,8 @@
 /**
  * @author Jakub Czaja <jakoob89@gmail.com>
  * Copyright (c) 2018 Jakub Czaja
+
+ * http://codetheory.in/fixing-html5-audio-problems-in-ios-and-android-mobile-browsers-to-overcome-the-limitations/
  **/
 
 // Declaring Global Variables
@@ -13,22 +15,17 @@ var scrId
 var btnId
 
 $(function () {
-  // Game Loader
-  $('#loader').delay(3000).fadeOut(100, function () {
-    $('#innerGame, #screen1').fadeIn()
-  })
   // Preload Game Assets
-  $.preload([
-    'images/backgrounds/bg1.jpg', 'images/backgrounds/bg2.jpg',
-    'images/backgrounds/bg3.jpg', 'images/backgrounds/bg4.jpg',
-    'images/backgrounds/bg5.jpg', 'images/backgrounds/bg6.jpg',
-    'images/backgrounds/bg7.jpg', 'images/backgrounds/bg8.jpg',
-    'audio/ding.mp3', 'audio/click.mp3',
-    'audio/trombone.mp3', 'audio/tada.mp3',
-    'audio/error.mp3', 'audio/shutter.mp3',
-    'audio/click2.mp3', 'audio/swoosh.mp3',
-    'audio/magicwand.mp3', 'audio/tictoc.mp3'
-  ])
+  $.preload(assets).then(function () {
+    // Start game when loading finished
+    $('#loader').delay(2000).fadeOut(100, function () {
+      $('#innerGame, #screen1').fadeIn()
+    })
+  }, function () {
+    console.error('Error loading game.')
+  }, function (progress) {
+    $('#loader span').html(Math.round(progress * 100) + '%')
+  })
 
   // Disable Selection and Right Click
   $('#innerGame').disableSelection().on('contextmenu', function () {
@@ -172,7 +169,7 @@ $(function () {
     helper: 'clone',
     revert: 'invalid',
     hoverClass: 'hovered',
-    revertDuration: 200
+    revertDuration: 100
   })
 
   // Setting dropzones
