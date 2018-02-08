@@ -1,8 +1,6 @@
 /**
  * @author Jakub Czaja <jakoob89@gmail.com>
  * Copyright (c) 2018 Jakub Czaja
-
- * http://codetheory.in/fixing-html5-audio-problems-in-ios-and-android-mobile-browsers-to-overcome-the-limitations/
  **/
 
 // Declaring Global Variables
