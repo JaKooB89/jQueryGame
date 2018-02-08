@@ -20,6 +20,7 @@ $(function () {
       $('#innerGame, #screen1').fadeIn()
     })
   }, function () {
+    $('#loader h4').html('Loading Error, Refresh the Page')
     console.error('Error loading game.')
   }, function (progress) {
     $('#loader span').html(Math.round(progress * 100) + '%')
@@ -230,6 +231,7 @@ $(function () {
       setTimeout(gemUp, 500)
       $('#btnPoints span').html(pointsTracker)
       $('#btnLevel span').html(levelTracker)
+      $('.carousel').carousel('next')
       if (levelTracker !== 4) {
         $('.screen').fadeOut(100, function () {
           setTimeout(function () {
