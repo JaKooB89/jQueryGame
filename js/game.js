@@ -27,13 +27,9 @@ $(function () {
   })
 
   // Disable Selection and Right Click
-  $('#innerGame').disableSelection().on('contextmenu', function () {
-    return false
-  })
-  // Disable dragging images other than draggables
-  $('img').not('.gameItem').on('dragstart', function () {
-    return false
-  })
+  $('#innerGame').disableSelection().on('contextmenu', false)
+  // Disable dragging images (other than draggables)
+  $('img').not('.gameItem').on('dragstart', false)
 
   // Difficulty Level Choice
   $('.btnDif').on('click', function () {
@@ -42,6 +38,7 @@ $(function () {
     $('.btnDif').addClass('disabled')
     $(this).removeClass('disabled')
     $('#btnStart').attr('disabled', false)
+    $('#btnTime').show()
     $('#btnTime span').html(count)
   })
 
@@ -87,7 +84,7 @@ $(function () {
 
   // Background Changer
   $('.backThumb').on('click', function () {
-    var bgId = $(this).attr('data-bg-id')
+    let bgId = $(this).attr('data-bg-id')
     $('#gameContainer').css('background-image', 'url(images/backgrounds/bg' + bgId + '.jpg)')
     if (sound) {
       $.playSound('audio/shutter.mp3')
@@ -104,13 +101,9 @@ $(function () {
         $('#screen' + scrId).fadeIn()
       }, 101)
     })
-    // Set and Show Timers
+    // Set Timer
     if (scrId >= 10) {
       counter = setInterval(timer, 1000)
-      $('#btnTime').show()
-      $('#btnTime').addClass('btn-outline-light')
-      $('#btnTime').removeClass('btn-outline-danger')
-      $('#btnTime').removeClass('btn-outline-warning')
     }
   })
 
@@ -131,11 +124,9 @@ $(function () {
       timerRes()
     } else if (count <= 3) {
       $.playSound('audio/tictoc.mp3')
-      $('#btnTime').removeClass('btn-outline-warning')
-      $('#btnTime').addClass('btn-outline-danger')
+      $('#btnTime').removeClass('btn-outline-warning').addClass('btn-danger')
     } else if (count <= 6) {
-      $('#btnTime').removeClass('btn-outline-light')
-      $('#btnTime').addClass('btn-outline-warning')
+      $('#btnTime').removeClass('btn-outline-light').addClass('btn-outline-warning')
     }
   }
 
@@ -148,21 +139,19 @@ $(function () {
 
   // Reset Timer
   function timerRes () {
-    $('#btnTime').hide()
     clearInterval(counter)
     count = btnId
     $('#btnTime span').html(count)
+    $('#btnTime').addClass('btn-outline-light').removeClass('btn-danger btn-outline-warning')
   }
 
   // Level Unlocking
   function lvlUnlock () {
-    var nextLvl = levelTracker + 1
+    let nextLvl = levelTracker + 1
     if (levelTracker >= 1) {
-      $('#lvl' + levelTracker).html('Level Completed<br><i class="fas fa-check"></i>')
-      $('#lvl' + levelTracker).attr('disabled', true)
+      $('#lvl' + levelTracker).html('Level Completed<br><i class="fas fa-check"></i>').attr('disabled', true)
       $('#lvl' + levelTracker + ' ~ span').addClass('hideItem')
-      $('#lvl' + nextLvl).html('PLAY')
-      $('#lvl' + nextLvl).attr('disabled', false)
+      $('#lvl' + nextLvl).html('PLAY').attr('disabled', false)
     }
   }
 
@@ -183,13 +172,12 @@ $(function () {
 
   // Start Game
   $('#btnStart').on('click', function () {
-    $('.btnDif').attr('disabled', true)
-    $('.btnDif').hide()
+    $('.btnDif').attr('disabled', true).hide()
   })
 
   // Win function (all levels completed)
   function win () {
-    var highestLvl = Number($('.carousel-indicators-numbers li:last-of-type').html())
+    let highestLvl = Number($('.carousel-indicators-numbers li:last-of-type').html())
     if (levelTracker === highestLvl) {
       $('.pyro').css('display', 'block')
       if (sound) {
@@ -250,20 +238,17 @@ $(function () {
 
   // Addpoint animation
   function addPoint () {
-    $('#btnPoints').toggleClass('btn-outline-light')
-    $('#btnPoints').toggleClass('btn-light')
+    $('#btnPoints').toggleClass('btn-outline-light btn-light')
   }
-
   // Lvlup animation
   function gemUp () {
-    $('#btnLevel').toggleClass('btn-outline-light')
-    $('#btnLevel').toggleClass('btn-light')
+    $('#btnLevel').toggleClass('btn-outline-light btn-light')
   }
 
   // Handling drop
   function handleDrop (event, ui) {
-    var gameDropId = $(this).attr('data-drop-id')
-    var gameDragId = ui.draggable.attr('data-drag-id')
+    let gameDropId = $(this).attr('data-drop-id')
+    let gameDragId = ui.draggable.attr('data-drag-id')
     if (gameDropId === gameDragId) {
       $(ui.draggable).addClass('hideItem')
       pointsTracker += 1
