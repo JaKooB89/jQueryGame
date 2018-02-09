@@ -50,10 +50,6 @@ const assets = [
   'images/game/hospital.jpg',
   'images/game/school.jpg',
   'images/game/bakery.jpg',
-  // Cursors
-  'cursors/left_ptr.cur',
-  'cursors/plus.cur',
-  'cursors/pointer.cur',
   // Sounds
   'audio/magicwand.mp3',
   'audio/tictoc.mp3',

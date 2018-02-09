@@ -30,6 +30,10 @@ $(function () {
   $('#innerGame').disableSelection().on('contextmenu', function () {
     return false
   })
+  // Disable dragging images other than draggables
+  $('img').not('.gameItem').on('dragstart', function () {
+    return false
+  })
 
   // Difficulty Level Choice
   $('.btnDif').on('click', function () {
@@ -164,7 +168,6 @@ $(function () {
 
   // Setting draggables
   $('.gameItem').draggable({
-    cursor: 'move',
     helper: 'clone',
     revert: 'invalid',
     hoverClass: 'hovered',
