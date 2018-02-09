@@ -74,13 +74,18 @@ $(function () {
   })
 
   // Fullscreen Function
-  $('#btnFull').on('click', function () {
+  function fullscreen () {
     $('nav, #infoSection, footer').toggle()
     $('#container').toggleClass('container')
     $('#gameContainer').toggleClass('mt-4 mb-3 rounded')
     $('#innerGame').toggleClass('innerGameHight')
     $('#btnFull svg').toggleClass('fa-expand fa-compress')
-  })
+  }
+  $('#btnFull').on('click', fullscreen)
+  // Auto fulscreen on mobile browsers
+  if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+    fullscreen()
+  }
 
   // Background Changer
   $('.backThumb').on('click', function () {
