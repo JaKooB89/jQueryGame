@@ -30,6 +30,8 @@ $(function () {
   $('#innerGame').disableSelection().on('contextmenu', false)
   // Disable dragging images (other than draggables)
   $('img').not('.gameItem').on('dragstart', false)
+  // Carousel swipe functionality
+  $('.carousel').bcSwipe({ threshold: 50 })
 
   // Difficulty Level Choice
   $('.btnDif').on('click', function () {
@@ -128,7 +130,9 @@ $(function () {
       levelRes()
       timerRes()
     } else if (count <= 3) {
-      $.playSound('audio/tictoc.mp3')
+      if (sound) {
+        $.playSound('audio/tictoc.mp3')
+      }
       $('#btnTime').removeClass('btn-outline-warning').addClass('btn-danger')
     } else if (count <= 6) {
       $('#btnTime').removeClass('btn-outline-light').addClass('btn-outline-warning')
