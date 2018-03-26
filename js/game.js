@@ -4,13 +4,13 @@
  **/
 
 // Declaring Global Variables
-var pointsTracker = 0
-var levelTracker = 0
-var sound = true
-var count = 10
-var counter
-var scrId
-var btnId
+var pointsTracker = 0,
+    levelTracker = 0,
+    sound = true,
+    count = 10,
+    counter,
+    scrId,
+    btnId
 
 $(function () {
   // Preload Game Assets
